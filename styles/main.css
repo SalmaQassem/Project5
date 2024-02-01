@@ -181,14 +181,17 @@ a {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 0;
+  top: -40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   background-color: #fff;
   font-size: 1.875rem;
   font-family: NotoSansMalayalam-SemiBold;
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border-radius: 1.25rem;
+}
+.game .body .game-images .img-container:after {
+  content: "";
 }
 .game .body .game-images .img-container.clicked {
   animation-name: scale;

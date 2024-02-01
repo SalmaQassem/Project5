@@ -146,14 +146,17 @@
           align-items: center;
           justify-content: center;
           position: absolute;
-          top: 0;
+          top: -40%;
           left: 50%;
-          transform: translate(-50%,-50%);
+          transform: translateX(-50%);
           background-color: $white-1;
           font-size: 1.875rem;
           font-family: NotoSansMalayalam-SemiBold;
           box-shadow: 0 0.25rem 0.25rem $shadow-1;
           border-radius: 1.25rem;
+        }
+        &:after{
+          content:""
         }
         &.clicked {
           animation-name: scale;
