@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content=" This Is Description For Project 5" />
+    <title>Project 5</title>
+    <!--Bootstrap File-->
+    <link rel="stylesheet" href="./styles/bootstrap.min.css" />
+    <!--Main Css File-->
+    <link rel="stylesheet" href="./styles/main.css" />
+    <!--Icons Library-->
+    <link rel="stylesheet" href="./styles/all.min.css" />
+  </head>
+  <body>
+    <div
+      class="homepage d-flex flex-column justify-content-center align-items-center"
+    >
+      <div class="text d-flex flex-column justify-content-center">
+        <p class="first-word m-0">listen</p>
+        <div class="second-line d-flex align-items-center gap-5">
+          <div class="second-word d-flex gap-1 align-items-center">
+            <p class="first-letter m-0">a</p>
+            <p class="second-letter m-0">n</p>
+            <p class="third-letter m-0">d</p>
+          </div>
+          <p class="third-word m-0">repeat</p>
+        </div>
+      </div>
+      <button class="play-button rounded-pill">
+        <i class="fa-solid fa-play"></i>
+      </button>
+    </div>
+    <div
+      class="game w-100 p-5 d-flex flex-column justify-content-between position-fixed top-50 start-50 translate-middle"
+    >
+      <div class="head d-flex justify-content-between align-items-center">
+        <div class="left d-flex flex-column gap-3">
+          <div class="top">
+            <button
+              class="back icon p-2 d-flex justify-content-center align-items-center rounded-4"
+            >
+              <i class="fa-solid fa-left-long"></i>
+            </button>
+            <div class="score"></div>
+          </div>
+          <button
+            class="bottom icon d-flex justify-content-center align-items-center rounded-4"
+          >
+            <i class="fa-solid fa-exclamation"></i>
+          </button>
+        </div>
+        <div class="right d-flex gap-3">
+          <button
+            class="volume icon d-flex justify-content-center align-items-center rounded-4"
+          >
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <button
+            class="music icon d-flex justify-content-center align-items-center rounded-4"
+          >
+            <i class="fa-solid fa-music"></i>
+          </button>
+          <button
+            class="settings icon d-flex justify-content-center align-items-center rounded-4"
+          >
+            <i class="fa-solid fa-gear"></i>
+          </button>
+        </div>
+      </div>
+      <div class="body d-flex align-items-center gap-3">
+        <button
+          class="left-arrow disabled arrow d-flex justify-content-center align-items-center p-2"
+        >
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <div class="game-images d-flex justify-content-center gap-2 flex-wrap">
+          <div
+            class="img-container d-flex justify-content-center align-items-center"
+            text="i am amr"
+          >
+            <img
+              src="./media/images/img1.svg"
+              alt="picture-1"
+              class="object-fit-contain"
+            />
+          </div>
+          <div
+            class="img-container d-flex justify-content-center align-items-center"
+            text="i am amr"
+          >
+            <img
+              src="./media/images/img2.svg"
+              alt="picture-2"
+              class="object-fit-contain"
+            />
+          </div>
+          <div
+            class="img-container d-flex justify-content-center align-items-center"
+            text="i am amr"
+          >
+            <img
+              src="./media/images/img3.svg"
+              alt="picture-3"
+              class="object-fit-contain"
+            />
+          </div>
+          <div
+            class="img-container d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="./media/images/img4.svg"
+              alt="picture-4"
+              class="object-fit-contain"
+            />
+          </div>
+          <div
+            class="img-container d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="./media/images/img5.svg"
+              alt="picture-5"
+              class="object-fit-contain"
+            />
+          </div>
+          <div
+            class="img-container d-flex justify-content-center align-items-center"
+          >
+            <img
+              src="./media/images/img5.svg"
+              alt="picture-6"
+              class="object-fit-contain"
+            />
+          </div>
+        </div>
+        <button
+          class="right-arrow arrow d-flex justify-content-center align-items-center p-2"
+        >
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+    <script
+      id="DragDropTouch"
+      src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"
+    ></script>
+    <script src="./JS/script.js" async></script>
+  </body>
+</html>

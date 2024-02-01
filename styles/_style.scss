@@ -1,0 +1,189 @@
+@use "./variables/colors" as *;
+@use "./variables/mediaQuery" as *;
+@use "./mixins" as *;
+@use "./fonts" as *;
+%shadow {
+  /*text-shadow: -1px -1px 0 $blue-1, 0 -1px 0 $blue-1, 1px -1px 0 $blue-1,
+    1px 0 0 $blue-1, 1px 1px 0 $blue-1, 0 1px 0 $blue-1, -1px 1px 0 $blue-1,
+    -1px 0 0 $blue-1;*/
+  text-shadow: 10px 0 0 $blue-1, -10px 0 0 $blue-1;
+}
+%iconBackground {
+  background: linear-gradient(5deg, $pink-3 40%, $pink-4 40% 100%);
+}
+.homepage {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: url("../media/images/background.svg");
+  background-size: cover;
+  background-position: 100% 80%;
+  .text {
+    text-align: center;
+    .first-word {
+      line-height: 1;
+      &:first-letter {
+        color: $pink-1;
+        font-size: 15.5rem;
+        font-family: Modak-Regular;
+        text-transform: capitalize;
+        text-shadow: none;
+      }
+      color: $black-1;
+      font-size: 10rem;
+      font-family: RammettoOne-Regular;
+      @extend %shadow;
+    }
+    .second-line {
+      .second-word {
+        font-size: 8rem;
+        font-family: Modak-Regular;
+        p {
+          text-shadow: 0 0.25rem 0.125rem $pink-2;
+          line-height: 1;
+          &:nth-of-type(1) {
+            color: $blue-2;
+            position: relative;
+            top: -3vh;
+          }
+          &:nth-of-type(2) {
+            color: $green-1;
+          }
+          &:nth-of-type(3) {
+            color: $yellow-1;
+            position: relative;
+            top: -3vh;
+          }
+        }
+      }
+    }
+    .third-word {
+      position: relative;
+      top: -2vh;
+      color: $pink-2;
+      font-size: 7rem;
+      font-family: RammettoOne-Regular;
+      @extend %shadow;
+      transform: rotate(-5.97deg);
+      line-height: 1;
+      text-transform: capitalize;
+    }
+  }
+  .play-button {
+    width: 10vw;
+    height: 7vw;
+    margin-top: 0.75rem;
+    position: relative;
+    left: 5%;
+    transform: rotate(-12.36deg);
+    background: $blue-3;
+    font-size: 4vw;
+    border: 0.375rem solid $yellow-1 !important;
+    outline: 0.375rem solid $blue-3;
+    filter: drop-shadow(0 0.25rem 0.25rem $shadow-1);
+    color: transparent;
+    .fa-solid {
+      background: linear-gradient(150deg, $yellow-2, $yellow-1, $white-1);
+      filter: drop-shadow(0 0.25rem 0.25rem $shadow-1);
+      -webkit-background-clip: text;
+    }
+  }
+  &.hide {
+    animation-name: scaleDown;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+  }
+}
+.game {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: url("../media/images/gameBackground.svg");
+  background-size: cover;
+  visibility: hidden;
+  .head {
+    .icon {
+      width: 3vw;
+      height: 2.6vw;
+      background: linear-gradient(to bottom, $yellow-4 2%, $yellow-3);
+      color: $white-1;
+      font-size: 1.5vw;
+      border: 0.25rem solid $blue-5;
+      box-shadow: 0 0.25rem 0.25rem $shadow-1;
+      &.volume {
+        @extend %iconBackground;
+      }
+      &.music {
+        @extend %iconBackground;
+      }
+    }
+  }
+  .body {
+    .arrow {
+      width: 4.25vw;
+      height: 6vw;
+      border-radius: 1.25rem;
+      font-size: 2.5vw;
+      background-color: $white-1;
+      box-shadow: 0 0.25rem 0.25rem $shadow-1;
+      .fa-solid {
+        filter: drop-shadow(0 0.25rem 0.25rem $shadow-1);
+      }
+      &.disabled {
+        color: $grey-1;
+      }
+    }
+    .game-images {
+      .img-container {
+        position: relative;
+        flex: 1;
+        max-width: calc((100% - (2 * 0.5rem)) / 3);
+        flex-basis: calc((100% - (2 * 0.5rem)) / 3);
+        filter: grayscale(80%);
+        cursor: pointer;
+        &:before {
+          content: attr(text);
+          padding: 0.25rem 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          background-color: $white-1;
+          font-size: 1.875rem;
+          font-family: NotoSansMalayalam-SemiBold;
+          box-shadow: 0 0.25rem 0.25rem $shadow-1;
+          border-radius: 1.25rem;
+        }
+        &.clicked {
+          animation-name: scale;
+          animation-duration: 0.4s;
+          animation-iteration-count: 1;
+        }
+        &.colored {
+          filter: grayscale(0%);
+        }
+      }
+    }
+  }
+}
+@keyframes scaleDown {
+  0% {
+    scale: 1;
+  }
+
+  100% {
+    scale: 0;
+  }
+}
+@keyframes scale {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 0.8;
+  }
+  100% {
+    scale: 1;
+  }
+}
