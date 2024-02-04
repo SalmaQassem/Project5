@@ -11,7 +11,12 @@
   background: linear-gradient(5deg, $pink-3 40%, $pink-4 40% 100%);
 }
 $letterSpacing: -0.15vw;
-
+%fixed-position {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .homepage {
   min-width: 100vw;
   min-height: 100vh;
@@ -142,14 +147,54 @@ $letterSpacing: -0.15vw;
     }
   }
 }
-
 .game {
   min-width: 100vw;
   min-height: 100vh;
   background-image: url("../media/images/gameBackground.svg");
   background-size: cover;
   visibility: hidden;
-
+  .head {
+    .left {
+      .top {
+        .scoreWrapper {
+          width: 15vw;
+          height: 5vh;
+          position: relative;
+          background-color: $white-1;
+          font-size: 0.9375rem;
+          border-radius: 0.625rem;
+          box-shadow: 0 0.25rem 0.25rem 0 $shadow-1;
+          &::before {
+            content: "";
+            position: absolute;
+            width: var(--width);
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 9;
+            background-color: $green-2;
+            border-radius: inherit;
+          }
+          .scoreIcon {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 1000;
+          }
+          .score {
+            position: absolute;
+            right: 4%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            font-family: LilitaOne-Regular;
+            color: $black-1;
+          }
+        }
+      }
+    }
+  }
   .icon {
     width: 3rem;
     height: 2.6rem;
@@ -247,7 +292,6 @@ $letterSpacing: -0.15vw;
       top: 85%;
     }
   }
-
   .body {
     .arrow {
       width: 6.25vw;
@@ -279,7 +323,6 @@ $letterSpacing: -0.15vw;
         color: $grey-1;
       }
     }
-
     .game-images {
       .img-container {
         height: 24vw;
@@ -394,7 +437,124 @@ $letterSpacing: -0.15vw;
     }
   }
 }
+.success-card {
+  width: 70%;
+  @extend %fixed-position;
+  transform: translate(-50%, 50%);
+  z-index: 999999;
+  visibility: hidden;
+  transition: 0.4s;
+  background: linear-gradient(180deg, #f3f2f0 33.31%, #febf47 117.3%);
+  .closeModal {
+    width: 10vw;
+    height: 10vw;
+    position: absolute;
+    right: -5%;
+    top: 0;
+    transform: translateY(-36%);
+    background-color: $orange-1;
+    color: $white-1;
+    font-size: 4vw;
 
+    @include mediaQuery($smallScreen_min_width) {
+      & {
+        width: 3.5rem;
+        height: 3.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+  @include mediaQuery($medScreen_min_width) {
+    & {
+      width: 31.1885rem;
+    }
+  }
+  .card-wrapper {
+    background: linear-gradient(0deg, #fce07f 10.87%, #ffffff 124.72%);
+    .img-wrapper {
+      width: 70%;
+      margin: 0 auto;
+      position: relative;
+      top: -3vh;
+    }
+    .outer-card {
+      background-color: $orange-1;
+      .text-card {
+        background: linear-gradient(
+          #fdeece80 0%,
+          #fdeece80 40%,
+          transparent 40%,
+          transparent 60%,
+          #fdeece80 60%,
+          #fdeece80 100%
+        );
+        transform: rotate(-1deg);
+        color: $black-1;
+        font-size: 5vw;
+        text-transform: capitalize;
+        font-family: LilitaOne-Regular;
+        font-weight: bold;
+        @include mediaQuery($smallScreen_min_width) {
+          font-size: 1.5rem;
+        }
+        .content {
+          span {
+            -webkit-text-stroke: 0.1px $white-1;
+          }
+          .score-text {
+            font-size: 4vw;
+            @include mediaQuery($smallScreen_min_width) {
+              font-size: 1.5rem;
+            }
+          }
+        }
+        .score-icon-wrapper {
+          width: 10vw;
+          @include mediaQuery($medScreen_min_width) {
+            & {
+              width: 5.03044rem;
+            }
+          }
+        }
+      }
+    }
+    .arrows {
+      .arrow {
+        width: 10vw;
+        padding: 1.5rem 0.75rem;
+        background-color: $blue-6;
+        color: $black-1;
+        font-size: 5vw;
+        border-radius: 1.25rem;
+        box-shadow: 0 0.25rem 0.25rem 0 $shadow-1;
+        @include mediaQuery($smallScreen_min_width) {
+          & {
+            width: 3.1875rem;
+            font-size: 2rem;
+          }
+        }
+        .fa-solid {
+          filter: drop-shadow(0 0.25rem 0.25rem $shadow-1);
+        }
+      }
+    }
+  }
+  &.show {
+    visibility: visible;
+    transform: translate(-50%, -50%);
+  }
+}
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  @extend %fixed-position;
+  z-index: 10000;
+  background-color: $overlay;
+  visibility: hidden;
+  &.show {
+    visibility: visible;
+  }
+}
 @keyframes scaleDown {
   0% {
     scale: 1;
