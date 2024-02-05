@@ -187,6 +187,10 @@ a {
   background-size: cover;
   visibility: hidden;
 }
+.game.second {
+  background-image: url("../media/images/gameBackground1.svg");
+  background-position: 50% 80%;
+}
 .game .head .left .top .scoreWrapper {
   width: 15vw;
   height: 5vh;
@@ -340,19 +344,20 @@ a {
   color: #777777;
 }
 .game .body .game-images .img-container {
-  height: 24vw;
+  height: 28vw;
   position: relative;
-  flex: 1 0;
   filter: grayscale(80%);
   cursor: pointer;
 }
 @media (min-width: 576px) {
   .game .body .game-images .img-container {
+    width: calc((100% - 0.5rem) / 2);
     height: 21vw;
   }
 }
 @media (min-width: 768px) {
   .game .body .game-images .img-container {
+    width: calc((100% - 1rem) / 3);
     height: 19vw;
   }
 }
@@ -363,7 +368,7 @@ a {
 }
 @media (min-width: 1200px) {
   .game .body .game-images .img-container {
-    height: 15vw;
+    height: 13vw;
   }
 }
 .game .body .game-images .img-container .card-text {

@@ -153,6 +153,10 @@ $letterSpacing: -0.15vw;
   background-image: url("../media/images/gameBackground.svg");
   background-size: cover;
   visibility: hidden;
+  &.second {
+    background-image: url("../media/images/gameBackground1.svg");
+    background-position: 50% 80%;
+  }
   .head {
     .left {
       .top {
@@ -179,7 +183,7 @@ $letterSpacing: -0.15vw;
             position: absolute;
             left: 0;
             top: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             z-index: 1000;
           }
           .score {
@@ -325,18 +329,19 @@ $letterSpacing: -0.15vw;
     }
     .game-images {
       .img-container {
-        height: 24vw;
+        height: 28vw;
         position: relative;
-        flex: 1 0;
         filter: grayscale(80%);
         cursor: pointer;
         @include mediaQuery($smallScreen_min_width) {
           & {
+            width: calc((100% - 0.5rem) / 2);
             height: 21vw;
           }
         }
         @include mediaQuery($medScreen_min_width) {
           & {
+            width: calc((100% - (2 * 0.5rem)) / 3);
             height: 19vw;
           }
         }
@@ -347,7 +352,7 @@ $letterSpacing: -0.15vw;
         }
         @include mediaQuery($XlargeScreen_min_width) {
           & {
-            height: 15vw;
+            height: 13vw;
           }
         }
         .card-text {
