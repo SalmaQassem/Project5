@@ -191,6 +191,12 @@ a {
   background-image: url("../media/images/gameBackground1.svg");
   background-position: 50% 80%;
 }
+.game.third {
+  background-image: url("../media/images/gameBackground2.svg");
+}
+.game.third .pause {
+  top: 77% !important;
+}
 .game .head .left .top .scoreWrapper {
   width: 15vw;
   height: 5vh;
@@ -343,44 +349,28 @@ a {
 .game .body .arrow.disabled {
   color: #777777;
 }
+.game .body .game-images {
+  flex-grow: 1;
+}
 .game .body .game-images .img-container {
-  height: 28vw;
+  height: 22vw;
   position: relative;
+  flex-grow: 1;
   filter: grayscale(80%);
   cursor: pointer;
 }
-@media (min-width: 576px) {
-  .game .body .game-images .img-container {
-    width: calc((100% - 0.5rem) / 2);
-    height: 21vw;
-  }
-}
-@media (min-width: 768px) {
-  .game .body .game-images .img-container {
-    width: calc((100% - 1rem) / 3);
-    height: 19vw;
-  }
-}
-@media (min-width: 992px) {
-  .game .body .game-images .img-container {
-    height: 17vw;
-  }
-}
-@media (min-width: 1200px) {
-  .game .body .game-images .img-container {
-    height: 13vw;
-  }
-}
 .game .body .game-images .img-container .card-text {
-  padding: 1vw 3.75vw;
+  width: 20vw;
+  max-width: 90%;
+  padding: 0.75vw 1.75vw;
   position: absolute;
-  top: -38%;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -113%);
   background-color: #fff;
-  font-size: 3vw;
+  font-size: 2.5vw;
   font-family: NotoSansMalayalam-SemiBold;
-  white-space: nowrap;
+  text-align: center;
   box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
   border-radius: 1.25rem;
   visibility: hidden;
@@ -395,7 +385,6 @@ a {
 @media (min-width: 768px) {
   .game .body .game-images .img-container .card-text {
     padding: 0.75vw 2.8125vw;
-    top: -35%;
     font-size: 2vw;
   }
 }
@@ -420,9 +409,9 @@ a {
 }
 @media (min-width: 576px) {
   .game .body .game-images .img-container .card-text::after {
-    border-left: 1vw solid transparent;
-    border-right: 1vw solid transparent;
-    border-top: 2vw solid #fff;
+    border-left: 0.75vw solid transparent;
+    border-right: 0.75vw solid transparent;
+    border-top: 1.25vw solid #fff;
   }
 }
 .game .body .game-images .img-container .card-text::first-letter {
@@ -447,6 +436,51 @@ a {
 }
 .game .body .game-images .img-container.colored .card-text {
   visibility: visible;
+}
+@media (min-width: 576px) {
+  .game .body .game-images.first .img-container, .game .body .game-images.second .img-container {
+    width: calc((100% - 0.5rem) / 2);
+    height: 21vw;
+  }
+}
+@media (min-width: 768px) {
+  .game .body .game-images.first .img-container, .game .body .game-images.second .img-container {
+    width: calc((100% - 1rem) / 3);
+    height: 19vw;
+  }
+}
+@media (min-width: 992px) {
+  .game .body .game-images.first .img-container, .game .body .game-images.second .img-container {
+    height: 17vw;
+  }
+}
+@media (min-width: 1200px) {
+  .game .body .game-images.first .img-container, .game .body .game-images.second .img-container {
+    height: 13vw;
+  }
+}
+.game .body .game-images.first .img-container .card-text, .game .body .game-images.second .img-container .card-text {
+  width: initial;
+  white-space: nowrap;
+}
+.game .question {
+  padding: 0.625vw 1.25vw;
+  background-color: #fff;
+  color: #773b1a;
+  font-family: MochiyPopPOne-Regular;
+  font-size: 2.5vw;
+  text-align: center;
+  border-radius: 1.5vw;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+}
+.game .question::first-letter {
+  text-transform: capitalize;
+}
+@media (min-width: 768px) {
+  .game .question {
+    padding: 0.75vw 2.8125vw;
+    font-size: 1.75vw;
+  }
 }
 
 .success-card {
@@ -580,10 +614,10 @@ a {
 }
 @keyframes show {
   0% {
-    transform: translateX(-50%) scale(0);
+    transform: translate(-50%, -100%) scale(0);
   }
   100% {
-    transform: translateX(-50%) scale(1);
+    transform: translate(-50%, -100%) scale(1);
   }
 }
 @keyframes visible {

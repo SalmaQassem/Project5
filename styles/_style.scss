@@ -157,6 +157,13 @@ $letterSpacing: -0.15vw;
     background-image: url("../media/images/gameBackground1.svg");
     background-position: 50% 80%;
   }
+  &.third {
+    background-image: url("../media/images/gameBackground2.svg");
+
+    .pause {
+      top: 77% !important;
+    }
+  }
   .head {
     .left {
       .top {
@@ -328,43 +335,25 @@ $letterSpacing: -0.15vw;
       }
     }
     .game-images {
+      flex-grow: 1;
       .img-container {
-        height: 28vw;
+        height: 22vw;
         position: relative;
+        flex-grow: 1;
         filter: grayscale(80%);
         cursor: pointer;
-        @include mediaQuery($smallScreen_min_width) {
-          & {
-            width: calc((100% - 0.5rem) / 2);
-            height: 21vw;
-          }
-        }
-        @include mediaQuery($medScreen_min_width) {
-          & {
-            width: calc((100% - (2 * 0.5rem)) / 3);
-            height: 19vw;
-          }
-        }
-        @include mediaQuery($largeScreen_min_width) {
-          & {
-            height: 17vw;
-          }
-        }
-        @include mediaQuery($XlargeScreen_min_width) {
-          & {
-            height: 13vw;
-          }
-        }
         .card-text {
-          padding: 1vw 3.75vw;
+          width: 20vw;
+          max-width: 90%;
+          padding: 0.75vw 1.75vw;
           position: absolute;
-          top: -38%;
+          top: 0;
           left: 50%;
-          transform: translateX(-50%);
+          transform: translate(-50%, -113%);
           background-color: $white-1;
-          font-size: 3vw;
+          font-size: 2.5vw;
           font-family: NotoSansMalayalam-SemiBold;
-          white-space: nowrap;
+          text-align: center;
           box-shadow: 0 0.25rem 0.25rem $shadow-1;
           border-radius: 1.25rem;
           visibility: hidden;
@@ -378,7 +367,6 @@ $letterSpacing: -0.15vw;
           @include mediaQuery($medScreen_min_width) {
             & {
               padding: 0.75vw 2.8125vw;
-              top: -35%;
               font-size: 2vw;
             }
           }
@@ -402,9 +390,9 @@ $letterSpacing: -0.15vw;
             filter: drop-shadow(0 0.25rem 0.25rem $shadow-1);
             @include mediaQuery($smallScreen_min_width) {
               & {
-                border-left: 1vw solid transparent;
-                border-right: 1vw solid transparent;
-                border-top: 2vw solid $white-1;
+                border-left: 0.75vw solid transparent;
+                border-right: 0.75vw solid transparent;
+                border-top: 1.25vw solid $white-1;
               }
             }
           }
@@ -424,13 +412,11 @@ $letterSpacing: -0.15vw;
             filter: grayscale(0);
           }
         }
-
         &.clicked {
           animation-name: scale;
           animation-duration: 0.4s;
           animation-iteration-count: 1;
         }
-
         &.colored {
           filter: grayscale(0%);
 
@@ -438,6 +424,56 @@ $letterSpacing: -0.15vw;
             visibility: visible;
           }
         }
+      }
+      &.first,
+      &.second {
+        .img-container {
+          @include mediaQuery($smallScreen_min_width) {
+            & {
+              width: calc((100% - 0.5rem) / 2);
+              height: 21vw;
+            }
+          }
+          @include mediaQuery($medScreen_min_width) {
+            & {
+              width: calc((100% - (2 * 0.5rem)) / 3);
+              height: 19vw;
+            }
+          }
+          @include mediaQuery($largeScreen_min_width) {
+            & {
+              height: 17vw;
+            }
+          }
+          @include mediaQuery($XlargeScreen_min_width) {
+            & {
+              height: 13vw;
+            }
+          }
+          .card-text {
+            width: initial;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+  .question {
+    padding: 0.625vw 1.25vw;
+    background-color: $white-1;
+    color: $brown-1;
+    font-family: MochiyPopPOne-Regular;
+    font-size: 2.5vw;
+    text-align: center;
+    border-radius: 1.5vw;
+    box-shadow: 0 0.25rem 0.25rem 0 $shadow-1;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+    @include mediaQuery($medScreen_min_width) {
+      & {
+        padding: 0.75vw 2.8125vw;
+        font-size: 1.75vw;
       }
     }
   }
@@ -586,11 +622,11 @@ $letterSpacing: -0.15vw;
 
 @keyframes show {
   0% {
-    transform: translateX(-50%) scale(0);
+    transform: translate(-50%, -100%) scale(0);
   }
 
   100% {
-    transform: translateX(-50%) scale(1);
+    transform: translate(-50%, -100%) scale(1);
   }
 }
 @keyframes visible {
