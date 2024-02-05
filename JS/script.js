@@ -1,78 +1,75 @@
-const container = document.querySelector(".container");
-const group = document.querySelector("#group");
-const colorInput = document.querySelector("#color-input");
-const sizeInput = document.querySelector("#size-input");
-let currentColor, currentSize, svgWidth, svgHeight, initialX, initialY;
-let circles = [];
-let deviceType = "";
-let events = {
-  mouse: {
-    click: "click",
-  },
-  touch: {
-    click: "touchstart",
-  },
+const playButton = document.querySelector(".play-button");
+const homePage = document.querySelector(".homepage");
+const gamePage = document.querySelector(".game");
+const gameImages = document.querySelectorAll(".game-images .img-container");
+const infoIcon = document.querySelector(".bottom.icon");
+const scoreElement = document.querySelector(".scoreWrapper .score");
+const successModal = document.querySelector(".success-card");
+const overlay = document.querySelector(".overlay");
+let counter = 0;
+const animateInfo = () => {
+  infoIcon.classList.add("show");
+  infoIcon.addEventListener("animationend", () => {
+    setTimeout(() => {
+      infoIcon.classList.remove("show");
+      infoIcon.classList.add("hide");
+    }, 1000);
+  });
 };
-
-const isTouchDevice = () => {
-  try {
-    //We try to create TouchEvent. It would fail for desktops and throw error
-    document.createEvent("TouchEvent");
-    deviceType = "touch";
-    return true;
-  } catch (e) {
-    deviceType = "mouse";
-    return false;
+playButton.addEventListener("click", () => {
+  document.querySelector("#start-audio").play();
+  homePage.classList.add("hide");
+  homePage.addEventListener("animationend", () => {
+    homePage.classList.remove("hide");
+    homePage.style.visibility = "hidden";
+    gamePage.style.visibility = "visible";
+    animateInfo();
+  });
+});
+gameImages.forEach((image) => {
+  image.addEventListener("click", () => {
+    document.querySelector(`audio[id="${image.dataset.id}"]`).play();
+    image.classList.add("clicked");
+    image.classList.add("colored");
+    image.addEventListener("animationend", () => {
+      image.classList.remove("clicked");
+    });
+    const text = image.querySelector(".card-text");
+    text.classList.add("show");
+    text.addEventListener("animationend", () => {
+      text.classList.remove("show");
+    });
+    counter += 1;
+    scoreElement.textContent = `${counter}/${gameImages.length}`;
+    document
+      .querySelector(":root")
+      .style.setProperty("--width", `${(100 / gameImages.length) * counter}%`);
+    if (counter === gameImages.length) {
+      const text = document.querySelector(".text-card .score-text");
+      text.textContent = `${counter}/${gameImages.length}`;
+      successModal.classList.add("show");
+      overlay.classList.add("show");
+    }
+  });
+});
+infoIcon.addEventListener("click", () => {
+  infoIcon.classList.remove("hide");
+  animateInfo();
+});
+/*window.addEventListener("click", (e) => {
+  if (
+    !successModal.contains(e.target) &&
+    successModal.classList.contains("show")
+  ) {
+    successModal.classList.remove("show");
+    setTimeout(() => {
+      overlay.classList.remove("show");
+    }, 400);
   }
-};
-
-//Choose color
-colorInput.addEventListener("input", () => {
-  currentColor = colorInput.value;
+});*/
+document.querySelector(".closeModal").addEventListener("click", () => {
+  successModal.classList.remove("show");
+  setTimeout(() => {
+    overlay.classList.remove("show");
+  }, 400);
 });
-
-//Choose sie
-sizeInput.addEventListener("input", () => {
-  currentSize = sizeInput.value;
-});
-
-isTouchDevice();
-
-container.addEventListener(events[deviceType].click, (e) => {
-  let mouseX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
-  let mouseY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
-  let relativeX = mouseX - container.getBoundingClientRect().left;
-  let relativeY = mouseY - container.getBoundingClientRect().top;
-
-  //Inside the dino part
-  let finalX = relativeX / initialX;
-  let finalY = relativeY / initialY;
-  circles.push(
-    `<circle cx="${finalX}" cy="${finalY}" fill="${currentColor}" r="${currentSize}"/>`
-  );
-  group.innerHTML = circles.join("");
-});
-container.addEventListener(events[deviceType].mousedown, (e) => {
-  let mouseX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
-  let mouseY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
-  let relativeX = mouseX - container.getBoundingClientRect().left;
-  let relativeY = mouseY - container.getBoundingClientRect().top;
-
-  //Inside the dino part
-  let finalX = relativeX / initialX;
-  let finalY = relativeY / initialY;
-  circles.push(
-    `<circle cx="${finalX}" cy="${finalY}" fill="${currentColor}" r="${currentSize}"/>`
-  );
-  group.innerHTML = circles.join("");
-});
-window.onload = () => {
-  currentColor = "#0075ff";
-  colorInput.value = currentColor;
-  currentSize = 5;
-  sizeInput.value = currentSize;
-  [svgHeight, svgWidth] = [500, 500];
-  initialX = container.clientWidth / svgWidth;
-  initialY = container.clientHeight / svgHeight;
-  circles = [];
-};
